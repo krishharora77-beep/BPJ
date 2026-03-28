@@ -1,19 +1,26 @@
 const apiKey = "goldapi-1n1ypo19mn96w2wu-io";
 
-fetch("https://www.goldapi.io/api/XAU/INR", {
-    method: "GET",
-    headers: {
-        "x-access-token": apiKey,
-        "Content-Type": "application/json"
-    }
-})
-    .then(response => response.json())
-    .then(data => {
-        let goldRate = (data.price / 31.1).toFixed(2); // per gram
+let goldRate = 0;
+
+async function fetchGoldPrice() {
+    try {
+        const res = await fetch("https://api.metals.live/v1/spot/gold");
+        const data = await res.json();
+
+        // Example response: [{gold: 2300.5}]
+        let pricePerOunce = data[0].gold;
+
+        goldRate = (pricePerOunce / 31.1).toFixed(2);
 
         document.getElementById("goldPrice").innerText =
             "₹ " + goldRate + " per gram";
 
+    } catch (err) {
+        document.getElementById("goldPrice").innerText =
+            "Error loading price 😢";
+        console.log(err);
+    }
+}
         // Calculator
         window.calculate = function () {
             let grams = document.getElementById("grams").value;

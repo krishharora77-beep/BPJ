@@ -1,0 +1,36 @@
+body {
+    background: black;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+}
+
+.logo {
+    width: 120px;
+    margin: 20px;
+}
+
+.menu a {
+    display: block;
+    margin: 10px;
+    padding: 15px;
+    background: #111;
+    color: gold;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.up {
+    color: lime;
+    animation: blink 0.5s alternate 3;
+}
+
+.down {
+    color: red;
+    animation: blink 0.5s alternate 3;
+}
+
+@keyframes blink {
+    from { opacity: 1; }
+    to { opacity: 0.3; }
+}

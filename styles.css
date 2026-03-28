@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    background: black;
+    color: gold;
+    text-align: center;
+}
+
+.container {
+    padding: 20px;
+}
+
+.logo {
+    width: 200px;
+    margin-top: 10px;
+}
+
+h1 {
+    margin-bottom: 75px;
+    text-shadow: #ffd700 50px;
+    text-decoration: underline;
+}
+
+.tab {
+    width: 300px;
+    margin: 15px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px gold;
+}
+
+.tab-header {
+    background: #111;
+    padding: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.tab-header:hover {
+    background: #222;
+}
+
+.tab-content {
+    background: black;
+    max-height: 0;
+    overflow: scroll;
+    transition: 0.4s ease;
+    padding: 0 15px;
+}
+
+.tab-active .tab-content {
+    max-height: 1000px;
+    padding: 20px;
+}
+
+input {
+    padding: 10px;
+    margin-top: 10px;
+    width: 80%;
+}
+
+button {
+    padding: 10px;
+    margin-top: 10px;
+    background: gold;
+    border: none;
+    cursor: pointer;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.menu a {
+    text-decoration: none;
+    padding: 15px;
+    background: #111;
+    color: gold;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gold;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    background: #222;
+    transform: scale(1.05);
+}

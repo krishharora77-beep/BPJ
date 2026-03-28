@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🧮 Gold Calculator</h1>
+
+<input id="grams" placeholder="Enter grams">
+<button onclick="calc()">Calculate</button>
+
+<p id="result"></p>
+
+<a href="index.html">⬅ Back</a>
+
+<script>
+function calc() {
+    let g = document.getElementById("grams").value;
+    let price = 6200; // fallback
+    document.getElementById("result").innerText = "₹ " + (g * price);
+}
+</script>
+
+</body>
+</html>

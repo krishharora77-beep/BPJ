@@ -14,6 +14,8 @@ async function fetchGoldPrice() {
 
         document.getElementById("goldPrice").innerText =
             "₹ " + goldRate + " per gram";
+        fetchGoldPrice();
+setInterval(fetchGoldPrice, 5000); // every 5 sec
 
     } catch (err) {
         document.getElementById("goldPrice").innerText =

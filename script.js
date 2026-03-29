@@ -16,6 +16,7 @@ async function fetchGold() {
         // ✅ SAFE CHECK
         if (!data || !data.price) {
             throw new Error("Invalid data");
+            updatesuggestion(price)
         }
 
         let price = data.price;
@@ -60,7 +61,6 @@ function startChart() {
             responsive: true,
             animation: false
         }
-        updatesuggestion(price)
     });
 }
 

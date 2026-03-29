@@ -1,9 +1,37 @@
 body {
-    margin: 20px;
+    margin: 0;
+    padding: 0;
     background: black;
     color: white;
-    font-family: Times New Roman;
+    font-family: Arial;
     text-align: center;
+}
+
+/* Container full width */
+.container {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Menu buttons full width */
+.menu a {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 10px 0;
+    padding: 15px;
+    background: #111;
+    color: gold;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+/* Make canvas responsive */
+canvas {
+    width: 100% !important;
+    height: auto !important;
 }
 
 .logo {

@@ -60,6 +60,7 @@ function startChart() {
             responsive: true,
             animation: false
         }
+        updatesuggestion(price)
     });
 }
 

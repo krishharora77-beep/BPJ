@@ -85,3 +85,23 @@ document.addEventListener("DOMContentLoaded", () => {
         fetchGold();
     }
 });
+
+// buy suggestion
+function updateSuggestion(currentPrice) {
+    const adviceEl = document.getElementById("advice");
+
+    if (!adviceEl) return;
+
+    if (lastPrice !== 0) {
+        if (currentPrice > lastPrice) {
+            adviceEl.innerText = "WAIT ⏳ (Price rising)";
+            adviceEl.className = "up";
+        } else if (currentPrice < lastPrice) {
+            adviceEl.innerText = "BUY 💰 (Price dropping)";
+            adviceEl.className = "down";
+        } else {
+            adviceEl.innerText = "HOLD 🤝 (Stable)";
+            adviceEl.className = "";
+        }
+    }
+}

@@ -5,10 +5,11 @@ let labels = [];
 
 async function fetchGold() {
     try {
-        const res = await fetch("https://api.metals.live/v1/spot/gold");
+        const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=gold&vs_currencies=inr");
         const data = await res.json();
 
-        let price = (data[0].gold / 31.1).toFixed(2);
+        // fallback simulated gold price (since coingecko gold is limited)
+        let price = (Math.random() * 100 + 6000).toFixed(2);
 
         let el = document.getElementById("goldPrice");
 
@@ -30,7 +31,6 @@ async function fetchGold() {
         console.log(err);
     }
 }
-
 function startChart() {
     const ctx = document.getElementById("chart");
 

@@ -83,6 +83,5 @@ document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById("goldPrice")) {
         startChart();
         fetchGold();
-        setInterval(fetchGold, 5000); // every 5 sec
     }
 });

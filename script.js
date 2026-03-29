@@ -3,16 +3,18 @@ let chart;
 let prices = [];
 let labels = [];
 
+// 🔥 FETCH REAL GOLD PRICE FROM YOUR BACKEND
 async function fetchGold() {
     try {
-        const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=gold&vs_currencies=inr");
+        const res = await fetch("/api/gold");
         const data = await res.json();
 
-        // fallback simulated gold price (since coingecko gold is limited)
-        let price = (Math.random() * 100 + 6000).toFixed(2);
+        // Convert ounce → gram
+        let price = (data.price / 31.1).toFixed(2);
 
         let el = document.getElementById("goldPrice");
 
+        // 🔴🟢 COLOR CHANGE
         if (lastPrice != 0) {
             if (price > lastPrice) {
                 el.className = "up";
@@ -28,32 +30,40 @@ async function fetchGold() {
         updateGraph(price);
 
     } catch (err) {
-        console.log(err);
+        console.log("Error fetching gold price:", err);
     }
 }
+
+// 📈 START CHART
 function startChart() {
     const ctx = document.getElementById("chart");
 
     chart = new Chart(ctx, {
-        type: 'line',
+        type: "line",
         data: {
             labels: labels,
             datasets: [{
-                label: "Gold Price",
+                label: "Gold Price (₹/g)",
                 data: prices,
                 borderWidth: 2
             }]
+        },
+        options: {
+            responsive: true,
+            animation: false
         }
     });
 }
 
+// 🔄 UPDATE GRAPH
 function updateGraph(price) {
     let time = new Date().toLocaleTimeString();
 
     prices.push(price);
     labels.push(time);
 
-    if (prices.length > 15) {
+    // Keep last 20 points
+    if (prices.length > 20) {
         prices.shift();
         labels.shift();
     }
@@ -61,10 +71,11 @@ function updateGraph(price) {
     chart.update();
 }
 
+// 🚀 START EVERYTHING
 document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById("goldPrice")) {
         startChart();
         fetchGold();
-        setInterval(fetchGold, 4000);
+        setInterval(fetchGold, 4000); // update every 4 sec
     }
 });

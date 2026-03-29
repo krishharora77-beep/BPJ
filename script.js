@@ -7,23 +7,25 @@ async function fetchGold() {
     try {
         const res = await fetch("/api/gold");
 
-        if (!res.ok) throw new Error("API error");
+        if (!res.ok) throw new Error("API failed");
 
         const data = await res.json();
 
-        let price = data.price; // ✅ NO CONVERSION
+        console.log("API DATA:", data); // 🔍 DEBUG
+
+        // ✅ SAFE CHECK
+        if (!data || !data.price) {
+            throw new Error("Invalid data");
+        }
+
+        let price = data.price;
 
         const el = document.getElementById("goldPrice");
 
-        // 🟢🔴 COLOR CHANGE
         if (lastPrice !== 0) {
-            if (price > lastPrice) {
-                el.className = "up";
-            } else if (price < lastPrice) {
-                el.className = "down";
-            } else {
-                el.className = "";
-            }
+            if (price > lastPrice) el.className = "up";
+            else if (price < lastPrice) el.className = "down";
+            else el.className = "";
         }
 
         el.innerText = "₹ " + price;
@@ -32,15 +34,11 @@ async function fetchGold() {
 
         updateGraph(price);
 
-        // 🕒 show update time
-        const timeEl = document.getElementById("updateTime");
-        if (timeEl) {
-            timeEl.innerText = "Updated: " + new Date().toLocaleTimeString();
-        }
-
     } catch (err) {
-        console.log(err);
-        document.getElementById("goldPrice").innerText = "API Error ❌";
+        console.log("ERROR:", err);
+
+        document.getElementById("goldPrice").innerText =
+            "Data unavailable ⚠️";
     }
 }
 

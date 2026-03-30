@@ -1,14 +1,20 @@
 body {
+    
     margin: 0;
     padding: 0;
-    background: black;
-    color: white;
-    font-family: Arial;
-    text-align: center;
+    background-image: url("aesthetic-wallpaper-with-gold-bars-high-angle_23-2149872245.jpg");
+    background-size: cover;
+    display: flex;
+    font-family: Times New Roman, serif;
+    align-items: center;
 }
 
 /* Container full width */
 .container {
+    background: rgba(0,0,141,0.20);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 5px solid rgba(255,255,255,0.25);
     width: 100%;
     max-width: 500px;
     margin: auto;
